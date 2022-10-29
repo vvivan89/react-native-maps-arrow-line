@@ -9,7 +9,7 @@ const ArrowedPolyline = ({arrow = null, addOnlyLastArrow = false, arrowSize = 8,
     coordinates = [],
     geodesic = false,
     strokeColor = 'black',
-    strokeColors = [], // iOS only
+    strokeColors = [] // not working on Google Maps for lines
   } = polylineProps;
 
   if (coordinates.length < 2) { return null; }
