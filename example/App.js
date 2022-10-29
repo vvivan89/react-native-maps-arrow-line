@@ -2,7 +2,7 @@
 import React from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet } from 'react-native';
-import ArrowedPolyline from 'react-native-maps-arrow-line';
+import ArrowedPolyline from 'react-native-maps-line-arrow';
 
 const INITIAL_REGION = {
   latitude: 52.5,

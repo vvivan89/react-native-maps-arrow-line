@@ -1,4 +1,4 @@
-# React Native Maps Arrow Line
+# React Native Maps Line Arrow
 
 Add-on to react-native-maps to add arrow or any other component to the end of the Polyline component
 Provides a workaround for [react-native-maps issue #3096](https://github.com/react-native-maps/react-native-maps/issues/3096)
@@ -8,7 +8,7 @@ Works both with **Expo-managed** and **bare** workflows.
 ## Installation
 
 ```
-npm install react-native-map-maps-arrow-line react-native-maps --save
+npm install react-native-map-maps-line-arrow react-native-maps --save
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ Please refer to a working expo-manages app in /example folder.
 
 1. Instead of built-in **Polyline** component of react-native-maps, import separate component:
 ```js
-import ArrowedPolyline from 'react-native-maps-arrow-line';
+import ArrowedPolyline from 'react-native-maps-line-arrow';
 ```
 2. Use the component the same way you would use **Polyline**:
 ```js

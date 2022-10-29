@@ -1,4 +1,4 @@
-declare module "react-native-maps-arrow-line" {
+declare module "react-native-maps-line-arrow" {
   import * as React from "react";
   import { MapPolylineProps } from "react-native-maps";
 
