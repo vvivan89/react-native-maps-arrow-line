@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useMemo } from "react";
 import { Polyline, Marker } from "react-native-maps";
 import DefaultArrow from "./default";
@@ -27,7 +26,7 @@ const ArrowedPolyline = ({arrow = null, addOnlyLastArrow = false, arrowSize = 8,
 
   return (
     <>
-      <Polyline {...polylineProps}/>
+      <Polyline coordinates={coordinates} {...polylineProps}/>
       {markerData.map((markerProps, index) => {
         const Component = typeof arrow === 'function' ? arrow : DefaultArrow;
         const color = strokeColors[index % strokeColors.length] || strokeColor;

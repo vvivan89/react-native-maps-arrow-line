@@ -1,4 +1,15 @@
-const calculateRotation = (loc, previousLoc, geodesic) => {
+interface Coordinate {
+  latitude: number,
+  longitude: number,
+}
+
+interface Result {
+  coordinate: Coordinate,
+  key: string,
+  rotation: number
+}
+
+const calculateRotation = (loc: Coordinate, previousLoc: Coordinate, geodesic: boolean): Result|null => {
   if (!previousLoc){ return null}
   const {latitude: lat1, longitude: lng1} = loc;
   const {latitude: lat2, longitude: lng2} = previousLoc;
@@ -10,7 +21,7 @@ const calculateRotation = (loc, previousLoc, geodesic) => {
     key: `${lat1}-${lng1}-${lat2}-${lng2}`, // "almost" unique key for react mapping
     rotation: rotationFunc(lat1, lat2, lng1, lng2) || 0
   }
-};``
+};
 
 export default calculateRotation;
 
@@ -23,7 +34,7 @@ export default calculateRotation;
   Therefore, the approach here is to find the bearing when traveling in the opposite direction,
   from B to A and then flip the marker upside down
 */
-const calculateBearing = (lat1, lat2, lng1, lng2) => {
+const calculateBearing = (lat1: number, lat2: number, lng1: number, lng2: number): number => {
   const [latRad1, latRad2, lngRad1, lngRad2] = [lat1, lat2, lng1, lng2]
     .map((n) => n * (Math.PI / 180));
 
@@ -40,7 +51,7 @@ const calculateBearing = (lat1, lat2, lng1, lng2) => {
   However, this is not as simple, as the Y axis is significantly distorted
   on the Mercator map projection, therefore the angle will depend on the points latitudes
 */
-const calculateAngle = (lat1, lat2, lng1, lng2) => {
+const calculateAngle = (lat1: number, lat2: number, lng1: number, lng2: number): number => {
   const [latRad1, latRad2, lngRad1, lngRad2] = [lat1, lat2, lng1, lng2]
     .map((n) => n * (Math.PI / 180));
 
