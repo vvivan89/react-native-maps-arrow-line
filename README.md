@@ -12,9 +12,9 @@ npm install react-native-map-maps-line-arrow react-native-maps --save
 ```
 
 ## Usage
-Please refer to a working expo-manages app in /example folder.
+Please refer to a working expo-managed app in /example folder.
 
-1. Instead of built-in **Polyline** component of react-native-maps, import separate component:
+1. Instead of built-in **Polyline** component of react-native-maps, import a component from this package:
 ```js
 import ArrowedPolyline from 'react-native-maps-line-arrow';
 ```
@@ -43,7 +43,7 @@ By default, arrow pointers are drawn to all segments of the line. If set to _tru
  - **arrow**: ReactComponent<br />
 _default: triangle composed of a **View** components_<br />
 It is possible to use custom pointer. This should be a function returning React Component.<br />
-Please note, if you use a custom component
+Please note if you use a custom component: in the default state (when no rotation applied) the component should point to the top.
 
 ## Examples
 ![examples](./example/assets/examples.png)
