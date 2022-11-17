@@ -13,7 +13,7 @@ const useHeading = () => {
   return {ref, heading, handleSetHeading}
 }
 
-const MapViewWithHeading = ({children, onRegionChangeComplete, ...mapViewProps}) => {
+const MapViewWithHeading = ({children, onRegionChangeComplete, Component = MapView, ...mapViewProps}) => {
   const {ref, heading, handleSetHeading} = useHeading();
   const handleChange = (...args) => {
     if (typeof onRegionChangeComplete === 'function') {
@@ -22,11 +22,11 @@ const MapViewWithHeading = ({children, onRegionChangeComplete, ...mapViewProps})
     handleSetHeading();
   }
   return (
-    <MapView {...mapViewProps} ref={ref} onRegionChangeComplete={handleChange}>
-      <HeadingProvider value={heading}>
-        {children}
-      </HeadingProvider>
-    </MapView>
+    <HeadingProvider value={heading}>
+      <Component {...mapViewProps} ref={ref} onRegionChangeComplete={handleChange}>
+          {children}
+      </Component>
+    </HeadingProvider>
   )
 }
 

@@ -13,7 +13,14 @@ declare module "react-native-maps-line-arrow" {
     any
   > {}
 
-  class MapViewWithHeading extends React.Component<MapViewProps>{}
+  interface MapViewWithHeadingProps {
+    Component?: object,
+  }
+
+  class MapViewWithHeading extends React.Component<
+    MapViewProps & MapViewWithHeadingProps,
+    any
+  >{}
 
   export {
     ArrowedPolyline,
