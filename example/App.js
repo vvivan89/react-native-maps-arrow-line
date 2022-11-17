@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import ArrowedPolyline from 'react-native-maps-line-arrow';
-import MapView from 'react-native-maps';
+import {ArrowedPolyline, MapViewWithHeading} from 'react-native-maps-line-arrow';
 
 const INITIAL_REGION = {
   latitude: 52.5,
@@ -25,12 +24,12 @@ const TEST_POINTS = [
 
 export default function App() {
   return (
-      <MapView
+      <MapViewWithHeading
         initialRegion={INITIAL_REGION}
         style={styles.map}
       >
         <ArrowedPolyline coordinates={TEST_POINTS} geodesic/>
-      </MapView>
+      </MapViewWithHeading>
   );
 }
 
