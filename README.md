@@ -14,21 +14,30 @@ npm install react-native-map-maps-line-arrow react-native-maps --save
 ## Usage
 Please refer to a working expo-managed app in /example folder.
 
-1. Instead of built-in **Polyline** component of react-native-maps, import a component from this package:
+1. Instead of built-in **MapView** and **Polyline** components from react-native-maps, use components from this package:
 ```js
-import ArrowedPolyline from 'react-native-maps-line-arrow';
+import { MapViewWithHeading, ArrowedPolyline } from 'react-native-maps-line-arrow';
 ```
-2. Use the component the same way you would use **Polyline**:
+2. Use components the same way you would use **MapView** and **Polyline**:
 ```js
 ...
-<MapView>
-  {/* <Polyline coordinates={COORDINATES} /> - don't use this */}
+{/* don't use this code */}
+{/* <MapView>
+  <Polyline coordinates={COORDINATES} />
+</MapView> */}
+
+<MapViewWithHeading>
   <ArrowedPolyline coordinates={COORDINATES} />
-</MapView>
+</MapViewWithHeading>
 ...
 ```
 
 ## Props
+
+### MapViewWithHeading
+Inherits all the properties of **MapView**, as described [here](https://github.com/react-native-maps/react-native-maps/blob/master/docs/mapview.md).<br />
+
+### ArrowedPolyline
 Inherits all the properties of **Polyline** component, as described [here](https://github.com/react-native-maps/react-native-maps/blob/master/docs/polyline.md).<br />
 Has three own properties, all of them are optional:
 
@@ -43,7 +52,7 @@ By default, arrow pointers are drawn to all segments of the line. If set to _tru
  - **arrow**: ReactComponent<br />
 _default: triangle composed of a **View** components_<br />
 It is possible to use custom pointer. This should be a function returning React Component.<br />
-Please note if you use a custom component: in the default state (when no rotation applied) the component should point to the top.
+Please note if you use a custom component: in the default state (when no rotation applied) the component should point to the top.<br />
 
 ## Examples
 ![examples](./example/assets/examples.png)
@@ -51,3 +60,7 @@ Please note if you use a custom component: in the default state (when no rotatio
 1. Arrow is created by the **Marker** component, which is rotated to align with the line.
 2. Calculation is based on spheric Earth form, which may result in slight angle aberration for some arrows which, however, should not be noticeable.
 3. Arrows are drawn both for "geodesic" (shortest distance) and straight lines.
+
+
+## Known Issue
+When user manually rotates the map, arrows follow this rotation with a slight but visible delay. This is caused by the asynchronous nature of the getCamera method of **MapView** component. There is currently no remedy for this.

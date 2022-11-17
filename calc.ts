@@ -9,7 +9,7 @@ interface Result {
   rotation: number
 }
 
-const calculateRotation = (loc: Coordinate, previousLoc: Coordinate, geodesic: boolean): Result|null => {
+const calculateRotation = (loc: Coordinate, previousLoc: Coordinate, geodesic: boolean, heading: number): Result|null => {
   if (!previousLoc){ return null}
   const {latitude: lat1, longitude: lng1} = loc;
   const {latitude: lat2, longitude: lng2} = previousLoc;
@@ -19,7 +19,7 @@ const calculateRotation = (loc: Coordinate, previousLoc: Coordinate, geodesic: b
   return {
     coordinate: loc,
     key: `${lat1}-${lng1}-${lat2}-${lng2}`, // "almost" unique key for react mapping
-    rotation: rotationFunc(lat1, lat2, lng1, lng2) || 0
+    rotation: (rotationFunc(lat1, lat2, lng1, lng2) - heading) || 0
   }
 };
 

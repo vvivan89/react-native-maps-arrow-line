@@ -1,8 +1,6 @@
 declare module "react-native-maps-line-arrow" {
   import * as React from "react";
-  import { MapPolylineProps } from "react-native-maps";
-
-  export type ArrowLine = {};
+  import { MapPolylineProps, MapViewProps } from "react-native-maps";
 
   interface LineArrowProps {
     arrow?: (color: string, size: number) => React.ReactNode;
@@ -14,4 +12,11 @@ declare module "react-native-maps-line-arrow" {
     MapPolylineProps & LineArrowProps,
     any
   > {}
+
+  class MapViewWithHeading extends React.Component<MapViewProps>{}
+
+  export {
+    ArrowedPolyline,
+    MapViewWithHeading
+  }
 }

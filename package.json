@@ -1,6 +1,6 @@
 {
   "name": "react-native-maps-line-arrow",
-  "version": "0.1.1-1",
+  "version": "0.2.0",
   "description": "Add-on to react-native-maps to add arrow or any other component to the end of the Polyline component",
   "main": "index.js",
   "scripts": {},
