@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet } from 'react-native';
 import {ArrowedPolyline, MapViewWithHeading} from 'react-native-maps-line-arrow';
 import MapView from 'react-native-map-clustering';
@@ -25,8 +25,10 @@ const TEST_POINTS = [
 ]
 
 export default function App() {
+  const ref = useRef();
   return (
       <MapViewWithHeading
+        ref={ref}
         Component={MapView}
         initialRegion={INITIAL_REGION}
         style={styles.map}
