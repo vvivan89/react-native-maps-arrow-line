@@ -1,5 +1,8 @@
 # CHANGE LOG
 
+## 0.3.0
+Added ref forwarding from `<MapViewWithHeading>` to the child component, such as `<MapView>`. This allows to use map methods, such as `fitToSuppliedMarkers`, that are typically applied to a ref.
+
 ## 0.2.1
 ### Changes
 `<MapViewWithHeading>` can now receive a custom component to be rendered instead of the generic `<MapView>` from react-native-maps. This will allow compatibility with other addons to react-native-maps, such as _react-native-map-clustering_, that also use the modified `<MapView>` component. Please refer to a working app in /example folder.

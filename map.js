@@ -1,9 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { forwardRef, useRef, useState, useImperativeHandle } from 'react';
 import MapView from 'react-native-maps';
-import { HeadingProvider } from './context';
+import { HeadingProvider } from 'react-native-maps-line-arrow/context';
 
-const useHeading = () => {
-  const ref = useRef();
+const useHeading = (ref) => {
   const [heading, setHeading] = useState(0);
   const handleSetHeading = () => {
     if (ref.current){
@@ -13,21 +12,27 @@ const useHeading = () => {
   return {ref, heading, handleSetHeading}
 }
 
-const MapViewWithHeading = ({children, onRegionChangeComplete, Component = MapView, ...mapViewProps}) => {
-  const {ref, heading, handleSetHeading} = useHeading();
+// @ts-ignore
+const MapViewWithHeading = forwardRef(({children, onRegionChangeComplete, Component, ...mapViewProps}, ref) => {
+  const innerRef = useRef();
+  useImperativeHandle(ref, () => innerRef.current);
+
+  const {heading, handleSetHeading} = useHeading(innerRef);
   const handleChange = (...args) => {
     if (typeof onRegionChangeComplete === 'function') {
       onRegionChangeComplete(...args);
     }
     handleSetHeading();
   }
+
+  const SafeComponent = Component || MapView;
   return (
     <HeadingProvider value={heading}>
-      <Component {...mapViewProps} ref={ref} onRegionChangeComplete={handleChange}>
+      <SafeComponent {...mapViewProps} ref={innerRef} onRegionChangeComplete={handleChange}>
           {children}
-      </Component>
+      </SafeComponent>
     </HeadingProvider>
   )
-}
+});
 
 export default MapViewWithHeading;
