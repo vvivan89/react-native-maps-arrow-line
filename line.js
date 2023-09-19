@@ -4,7 +4,7 @@ import DefaultArrow from "./default";
 import calculateRotation from './calc';
 import headingContext from './context';
 
-const ArrowedPolyline = ({arrow = null, addOnlyLastArrow = false, arrowSize = 8, ...polylineProps}) => {
+const ArrowedPolyline = ({arrow = null, addOnlyLastArrow = false, samplingRate=15, arrowSize = 8, ...polylineProps}) => {
   const {
     coordinates = [],
     geodesic = false,
@@ -18,7 +18,7 @@ const ArrowedPolyline = ({arrow = null, addOnlyLastArrow = false, arrowSize = 8,
        const index = coordinates.length - 1;
        return [calculateRotation(coordinates[index], coordinates[index - 1], geodesic, heading)]
       }
-      const result = coordinates.map((coord, index) => calculateRotation(coord, coordinates[index - 1], geodesic, heading));
+      const result = coordinates.reduce((acc, coord, index) => {if (index%samplingRate===0){acc.push(calculateRotation(coord, coordinates[index - 1], geodesic, heading))}; return acc}, []);
      // first item will be empty as we don't place marker at the line start
      result.shift();
      return result;
