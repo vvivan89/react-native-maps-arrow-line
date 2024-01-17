@@ -8,7 +8,7 @@ Works both with **Expo-managed** and **bare** workflows.
 ## Installation
 
 ```
-npm install react-native-map-maps-line-arrow react-native-maps --save
+npm install react-native-maps-line-arrow react-native-maps --save
 ```
 
 ## Usage
